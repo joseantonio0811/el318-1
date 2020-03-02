@@ -14,12 +14,13 @@ div {
 <div id="cuadro"></div>
 <p id="anuncio"></p>
 <p id="inout"></p>
-<p id="click"></p>
+<p id="estadoclick"></p>
 
 <script>
 var cuadro = document.getElementById("cuadro");
 var anuncio = document.getElementById("anuncio");
 var inout = document.getElementById("inout");
+var estadoclick = document.getElementById("estadoclick");  
 
 cuadro.onmousemove = function(e) {
   var x = e.clientX;
@@ -60,13 +61,13 @@ cuadro.onmousedown = function(e) {
   var x = e.clientX;
   var y = e.clientY;
   var coor = "Abajo: (" + x + "," + y + ")";
-  click.innerHTML = coor;
+  estadoclick.innerHTML = coor;
 };
 cuadro.onmouseup = function(e) {
   var x = e.clientX;
   var y = e.clientY;
   var coor = "Arriba: (" + x + "," + y + ")";
-  click.innerHTML = coor;
+  estadoclick.innerHTML = coor;
 };
 
 
