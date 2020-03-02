@@ -13,6 +13,8 @@ div {
 
 <div id="cuadro"></div>
 <p id="anuncio"></p>
+<p id="inout"></p>
+<p id="click"></p>
 
 <script>
 var cuadro = document.getElementById("cuadro");
@@ -54,8 +56,20 @@ cuadro.onmouseleave = function(e) {
   inout.innerHTML = coor;
 };
 
+cuadro.onmousedown = function(e) {
+  var x = e.clientX;
+  var y = e.clientY;
+  var coor = "Abajo: (" + x + "," + y + ")";
+  click.innerHTML = coor;
+};
+cuadro.onmouseup = function(e) {
+  var x = e.clientX;
+  var y = e.clientY;
+  var coor = "Arriba: (" + x + "," + y + ")";
+  click.innerHTML = coor;
+};
+
 
 </script>
-
 </body>
 </html>
