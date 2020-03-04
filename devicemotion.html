@@ -18,7 +18,7 @@
 </head>
 <body>
 <div id="bola"></div>
-<button id="iniciar">iniciar</button>
+<button id="iniciar">Iniciar</button>
 <script>
 var x = 0;
 var y = 0;
@@ -31,6 +31,8 @@ var roce = 0.1;
 var bola = document.getElementById("bola");
 if (window.DeviceMotionEvent == "undefined"){
     alert("No tiene DeviceMotion");
+} else {
+    alert("SI tiene DeviceMotion");
 }
 document.getElementById("iniciar").onclick = function(){
     alert("click");
