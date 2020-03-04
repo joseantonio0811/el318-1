@@ -1,9 +1,33 @@
 <!DOCTYPE html>
 <html>
-<body>
+<body>  
+<textarea id="textbox">Type something here</textarea>
+<button id="crear">Crea archivo</button>
+<a download="info.txt" id="descargar" style="display: none">Descargar</a>
+  
+  
 <input type="file" id="archivo">
 <div id="texto"></div>
 <script>
+  
+var archivoTexto = null,
+function creaArchivo(texto){   
+    var datos = new Blob([texto], {type: 'text/plain'});
+    if (archivoTexto !== null) {
+        window.URL.revokeObjectURL(archivoTexto);
+    }
+    archivoTexto = window.URL.createObjectURL(datos);
+    return archivoTexto;
+};
+document.getElementById('crear').onclick = function () {
+    var descargar = document.getElementById('descargar');
+    var texto = document.getElementById('texto');
+    descargar.href = makeTextFile(texto.value);
+    descargar.style.display = 'block';
+}
+  
+  
+  
 document.getElementById('archivo').addEventListener('change', function(){
   if (this.files.length === 0) {
     return;
@@ -16,6 +40,5 @@ document.getElementById('archivo').addEventListener('change', function(){
   reader.readAsText(this.files[0]);
 });
 </script>
-
 </body>
 </html>
