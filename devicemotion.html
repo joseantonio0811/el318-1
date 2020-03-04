@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movimiento</title>
+    <meta charset=utf-8>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <style>
+        #bola {
+            width: 20px;
+            height: 20px;
+            border-radius: 10px;
+            background-color: red;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+    </style>
+</head>
+<body>
+<div id="bola"></div>
+<script>
+var x = 0;
+var y = 0;
+var vx = 0;
+var vy = 0;
+var ax = 0;
+var ay = 0;
+var dt = 0.01;
+var k = 0.01;
+var bola = document.getElementById("bola");
+if (window.DeviceMotionEvent == undefined){
+    alert("No tiene DeviceMotion");
+} else {
+    window.ondevicemotion = function(evento){
+        ax = evento.accelerationIncludingGravity.x;
+        ay = evento.accelerationIncludingGravity.y;
+    };
+    setInterval(function(){
+        var ancho = window.innerWidth;
+        var alto = window.innerHeight;
+        x += vx*dt + 0.5*ax*dt*dt;
+        y += vy*dt - 0.5*ay*dt*dt;
+        vx += ax*dt;
+        vy += -ay*dt;
+        
+        if (x<0){
+            x = -x ;
+            vx = -vx;
+        } else if (x+20 > ancho){
+            x = -40 -x +ancho;
+            vx = -vx;
+        }
+        if (y<0){
+            y = -y;
+            vy = -vy;
+        } else if (y+20 > alto){
+            y = -40 -y +ancho;
+            vy = -vy;
+        }
+        
+        bola.style.left = x + "px";
+        bola.style.top = y + "px";
+    },dt*1000);
+}
+</script>
+</body>
+</html>
