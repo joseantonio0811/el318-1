@@ -6,17 +6,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>  
-<textarea id="texto">...</textarea>
+<textarea id="texto-in">...</textarea>
 <br>
 <br>
 <button id="crear">Crea archivo</button>
 <br>
 <br>
 <a download="info.txt" id="descargar" style="display: none">Descargar</a>
-  
+<br>
+<br>
+<hr>
   
 <input type="file" id="archivo">
-<div id="texto"></div>
+<div id="texto-out"></div>
 <script>
   
 var archivoTexto = null;
@@ -30,7 +32,7 @@ function creaArchivo(texto){
 };
 document.getElementById('crear').onclick = function () {
     var descargar = document.getElementById('descargar');
-    var texto = document.getElementById('texto');
+    var texto = document.getElementById('texto-in');
     descargar.href = creaArchivo(texto.value);
     descargar.style.display = 'block';
 }
@@ -44,7 +46,7 @@ document.getElementById('archivo').addEventListener('change', function(){
 
   const reader = new FileReader();
   reader.onload = function() {
-    document.getElementById('texto').innerHTML = reader.result;
+    document.getElementById('texto-out').innerHTML = reader.result;
   };
   reader.readAsText(this.files[0]);
 });
