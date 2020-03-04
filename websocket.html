@@ -58,9 +58,11 @@ function clickConectar(){
   if (conectado){
     websocket.close();
     btonConectar.innerHTML = "Conectar";
+    writeToScreen('DESCONECTADO');
   } else {
     websocket = new WebSocket(wsUri);
     btonConectar.innerHTML = "Desconectar";
+    writeToScreen('CONECTADO');
   }
   conectar = !conectar;
 }
