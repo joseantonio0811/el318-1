@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+<input type="file" id="archivo">
+<div id="texto"></div>
+<script>
+document.getElementById('archivo').addEventListener('change', function(){
+  if (this.files.length === 0) {
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = function() {
+    document.getElementById('texto').innerHTML = reader.result;
+  };
+  reader.readAsText(this.files[0]);
+});
+</script>
+
+</body>
+</html>
