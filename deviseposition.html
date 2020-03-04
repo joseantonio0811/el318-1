@@ -14,6 +14,10 @@
       <td>Dirección [alpha]</td>
       <td id="alfa"></td>
     </tr>
+    <tr>
+      <td>Norte?</td>
+      <td id="norte"></td>
+    </tr>
   </table>
   <script>
 if ('DeviceOrientationEvent' in window) {
@@ -26,6 +30,9 @@ function deviceOrientationHandler (eventData) {
   document.getElementById("gama").innerHTML = eventData.gamma;
   document.getElementById("beta").innerHTML = eventData.beta;
   document.getElementById("alfa").innerHTML = eventData.alpha;
+  if (eventData.webkitCompassHeading){
+    document.getElementById("norte").innerHTML = eventData.webkitCompassHeading;
+  }
 }   
   </script>
 </body>
