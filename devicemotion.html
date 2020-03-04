@@ -33,6 +33,7 @@ if (window.DeviceMotionEvent == "undefined"){
     alert("No tiene DeviceMotion");
 }
 document.getElementById("iniciar").onclick = function(){
+    alert("click");
     DeviceMotionEvent.requestPermission()
     .then( response => {
         if ( response == "granted" ) {
@@ -46,7 +47,11 @@ document.getElementById("iniciar").onclick = function(){
                 ay -= vy * roce;
             });
             document.getElementById("iniciar").style.display "none";
+        } else {
+            alert(response);
         }
+    }).catch(response => {
+        alert(response);
     });  
 };
 setInterval(function(){
