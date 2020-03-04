@@ -26,15 +26,15 @@ var vy = 0;
 var ax = 0;
 var ay = 0;
 var dt = 0.01;
-var roce = 0.01;
+var roce = 0.1;
 var bola = document.getElementById("bola");
 if (window.DeviceMotionEvent == undefined){
     alert("No tiene DeviceMotion");
 } else {
     window.ondevicemotion = function(evento){
         //fuerza gravedad
-        ax = -evento.accelerationIncludingGravity.x;
-        ay = evento.accelerationIncludingGravity.y;
+        ax = -evento.accelerationIncludingGravity.x*10;
+        ay = evento.accelerationIncludingGravity.y*10;
         
         //fuerza roce
         ax -= vx * roce;
