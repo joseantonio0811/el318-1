@@ -19,7 +19,7 @@
 <div id="texto"></div>
 <script>
   
-var archivoTexto = null,
+var archivoTexto = null;
 function creaArchivo(texto){   
     var datos = new Blob([texto], {type: 'text/plain'});
     if (archivoTexto !== null) {
@@ -31,7 +31,7 @@ function creaArchivo(texto){
 document.getElementById('crear').onclick = function () {
     var descargar = document.getElementById('descargar');
     var texto = document.getElementById('texto');
-    descargar.href = makeTextFile(texto.value);
+    descargar.href = creaArchivo(texto.value);
     descargar.style.display = 'block';
 }
   
