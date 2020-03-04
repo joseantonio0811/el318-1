@@ -26,35 +26,41 @@ var vy = 0;
 var ax = 0;
 var ay = 0;
 var dt = 0.01;
-var k = 0.01;
+var roce = 0.01;
 var bola = document.getElementById("bola");
 if (window.DeviceMotionEvent == undefined){
     alert("No tiene DeviceMotion");
 } else {
     window.ondevicemotion = function(evento){
+        //fuerza gravedad
         ax = evento.accelerationIncludingGravity.x;
-        ay = evento.accelerationIncludingGravity.y;
+        ay = -evento.accelerationIncludingGravity.y;
+        
+        //fuerza roce
+        ax -= vx * roce;
+        ay -= vy * roce;
+        
     };
     setInterval(function(){
         var ancho = window.innerWidth;
         var alto = window.innerHeight;
         x += vx*dt + 0.5*ax*dt*dt;
-        y += vy*dt - 0.5*ay*dt*dt;
+        y += vy*dt + 0.5*ay*dt*dt;
         vx += ax*dt;
-        vy += -ay*dt;
+        vy += ay*dt;
         
         if (x<0){
             x = -x ;
             vx = -vx;
         } else if (x+20 > ancho){
-            x = -40 -x +ancho;
+            x = -40 -x + 2*ancho;
             vx = -vx;
         }
         if (y<0){
             y = -y;
             vy = -vy;
         } else if (y+20 > alto){
-            y = -40 -y +ancho;
+            y = -40 -y + 2*ancho;
             vy = -vy;
         }
         
