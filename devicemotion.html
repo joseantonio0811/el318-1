@@ -31,30 +31,20 @@ var roce = 0.1;
 var bola = document.getElementById("bola");
 if (window.DeviceMotionEvent == "undefined"){
     alert("No tiene DeviceMotion");
-} else {
-    alert("SI tiene DeviceMotion");
 }
 document.getElementById("iniciar").onclick = function(){
-    alert("click");
-    DeviceMotionEvent.requestPermission()
-    .then( response => {
-        if ( response == "granted" ) {
-            window.addEventListener( "devicemotion", (evento) => {
-                //fuerza gravedad
-                ax = -evento.accelerationIncludingGravity.x*10;
-                ay = evento.accelerationIncludingGravity.y*10;
-
-                //fuerza roce
-                ax -= vx * roce;
-                ay -= vy * roce;
-            });
-            document.getElementById("iniciar").style.display = "none";
-        } else {
-            alert(response);
-        }
-    }).catch(response => {
-        alert(response);
-    });  
+    if (typeof(DeviceMotionEvent.requestPermission ) === "function"){
+        DeviceMotionEvent.requestPermission()
+        .then( response => {
+            if ( response == "granted" ) {
+                activarMovimiento();
+            } else {
+                alert(response);
+            }
+        });  
+    } else {
+        activarMovimiento();
+    }
 };
 setInterval(function(){
     var ancho = window.innerWidth;
@@ -82,6 +72,18 @@ setInterval(function(){
     bola.style.left = x + "px";
     bola.style.top = y + "px";
 },dt*1000);
+function activarMovimiento(){
+    window.addEventListener( "devicemotion", (evento) => {
+        //fuerza gravedad
+        ax = -evento.accelerationIncludingGravity.x*10;
+        ay = evento.accelerationIncludingGravity.y*10;
+
+        //fuerza roce
+        ax -= vx * roce;
+        ay -= vy * roce;
+    });
+    document.getElementById("iniciar").style.display = "none";
+}
 </script>
 </body>
 </html>
