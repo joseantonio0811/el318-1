@@ -52,7 +52,7 @@
     canal = document.getElementById("canal").value;
     if (canal != ""){
       firebase.database().ref('canal/' + canal).on('child_added', function(data) {
-        var message = "<b>" + data.val().usuario + "</b>:";
+        var message = "<b>" + data.val().usuario + "</b>: ";
         message += data.val().mensaje + "<br>";
         writeToScreen(message);
       });
