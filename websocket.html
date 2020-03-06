@@ -14,13 +14,11 @@ function init(){
   btonConectar = document.getElementById("conectar");
   btonConectar.onclick = clickConectar;
   document.getElementById("enviar").onclick = doSend;
-}
-
-function testWebSocket(){
-    websocket.onopen = onOpen;
-    websocket.onclose = onClose;
-    websocket.onmessage = onMessage;
-    websocket.onerror = onError;
+  
+  websocket.onopen = onOpen;
+  websocket.onclose = onClose;
+  websocket.onmessage = onMessage;
+  websocket.onerror = onError;
 }
 
 function onOpen(evt){
