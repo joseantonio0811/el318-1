@@ -1,0 +1,12 @@
+<! DOCTYPE html>
+<Html>
+  <Cuerpo>
+    <canvas idá"myCanvas" widthá"300" heightá"400" styleá"border:1px solid #d3d3d3;">
+    </Lona>
+<Guión>
+var canva - documento. getElementById("myCanvas");
+var ctx á canva. getContext("2d");
+
+dibuja pantalla gris
+ctx. fillStyle á "#9b9b9b";
+ctx. fillRect (10,20,30,40);
